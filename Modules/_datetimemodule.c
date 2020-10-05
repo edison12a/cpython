@@ -3510,8 +3510,13 @@ static PyMethodDef date_methods[] = {
     {"ctime",       (PyCFunction)date_ctime,        METH_NOARGS,
      PyDoc_STR("Return ctime() style string.")},
 
-    {"strftime",        (PyCFunction)(void(*)(void))date_strftime,     METH_VARARGS | METH_KEYWORDS,
-     PyDoc_STR("format -> strftime() style string.")},
+     {"strftime",       (PyCFunction)(void(*)(void))date_strftime,     METH_VARARGS | METH_KEYWORDS,
+      PyDoc_STR("strftime(format) -> style\n"
+                "\n"
+                "Return a string representing the date, controlled by an "
+                "explicit format string.\n"
+                "Format codes referring to hours, minutes or seconds will see "
+                "0 values.")},
 
     {"__format__",      (PyCFunction)date_format,       METH_VARARGS,
      PyDoc_STR("Formats self with strftime.")},
@@ -4676,7 +4681,10 @@ static PyMethodDef time_methods[] = {
                "timespec specifies what components of the time to include.\n")},
 
     {"strftime",        (PyCFunction)(void(*)(void))time_strftime,     METH_VARARGS | METH_KEYWORDS,
-     PyDoc_STR("format -> strftime() style string.")},
+     PyDoc_STR("strftime(format) -> style\n"
+               "\n"
+               "Return a string representing the date, controlled by an "
+               "explicit format string.")},
 
     {"__format__",      (PyCFunction)date_format,       METH_VARARGS,
      PyDoc_STR("Formats self with strftime.")},
@@ -6365,6 +6373,12 @@ static PyMethodDef datetime_methods[] = {
 
     {"ctime",       (PyCFunction)datetime_ctime,        METH_NOARGS,
      PyDoc_STR("Return ctime() style string.")},
+
+    {"strftime",   (PyCFunction)(void(*)(void))date_strftime, METH_VARARGS | METH_KEYWORDS,
+     PyDoc_STR("strftime(format) -> style\n"
+               "\n"
+               "Return a string representing the date, controlled by an "
+               "explicit format string.")},
 
     {"timetuple",   (PyCFunction)datetime_timetuple, METH_NOARGS,
      PyDoc_STR("Return time tuple, compatible with time.localtime().")},
